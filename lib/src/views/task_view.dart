@@ -37,12 +37,10 @@ class _Task3ScreenState extends State<Task3Screen> {
     
 
     try {
-      final response = await http.get(Uri.parse('https://your-api-endpoint.com/data'));
+      final response = await http.get(Uri.parse('https://nodedemo.com/login'));
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
-        // Assuming jsonData is a list of data objects, you may need to adjust this based on your API response structure.
-
         for (var data in jsonData) {
           dummyData.add({
             'image': data['image'],
