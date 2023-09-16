@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onboarding_flutter_test/src/views/task_view.dart';
-
+import 'package:get/get.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Onboarding Flutter Test',
       theme: ThemeData(
         // This is the theme of your application.
