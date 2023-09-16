@@ -29,7 +29,7 @@ class _Task3ScreenState extends State<Task3Screen> {
     });
   }
   bool isLoading = false;
-
+  String errorMessage = '';
   Future<void> fetchData() async {
     setState(() {
       isLoading = true;
@@ -49,10 +49,20 @@ class _Task3ScreenState extends State<Task3Screen> {
             'isFavorite': false,
           });
         }
-      }
+      } else {
+      // Handles non-200 status code (e.g., display an error message)
+      print('Error: ${response.statusCode}');
+      // Optionally, you can set an error message and show a retry button.
+      setState(() {
+        errorMessage = 'Failed to fetch data. Status code: ${response.statusCode}';
+      });
+    }
     } catch (error) {
       // logic that Handles errors
       print('Error fetching data: $error');
+      setState(() {
+      errorMessage = 'Failed to fetch data. Check your internet connection.';
+    });
     } finally {
       setState(() {
         isLoading = false;
@@ -70,6 +80,25 @@ class _Task3ScreenState extends State<Task3Screen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
+            : errorMessage.isNotEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  errorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Retry fetching data
+                    fetchData();
+                  },
+                  child: Text('Retry'),
+                ),
+              ],
+            ),
+          )
           : ListView.builder(
               itemCount: dummyData.length,
               itemBuilder: (ctx, index) {
