@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'task_detail_screen.dart';
-
-class Task3Screen extends StatefulWidget {
+// TaskViewScreen displays a list of cards with images, titles, and descriptions.
+class TaskViewScreen extends StatefulWidget {
   @override
-  _Task3ScreenState createState() => _Task3ScreenState();
+  _TaskViewScreenState createState() => _TaskViewScreenState();
 }
 
-class _Task3ScreenState extends State<Task3Screen> {
+class _TaskViewScreenState extends State<TaskViewScreen> {
   final List<Map<String, dynamic>> dummyData = [
     {
       'image': 'image_url_1',
@@ -30,12 +30,13 @@ class _Task3ScreenState extends State<Task3Screen> {
   }
   bool isLoading = false;
   String errorMessage = '';
+  // fetchData fetches data from an API endpoint and updates the screen.
   Future<void> fetchData() async {
     setState(() {
       isLoading = true;
     });
     
-
+    
     try {
       final response = await http.get(Uri.parse('https://nodedemo.com/login'));
 
@@ -81,6 +82,7 @@ class _Task3ScreenState extends State<Task3Screen> {
               child: CircularProgressIndicator(),
             )
             : errorMessage.isNotEmpty
+            // Display an error message and retry button.
         ? Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
