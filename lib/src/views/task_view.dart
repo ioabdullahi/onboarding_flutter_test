@@ -9,21 +9,6 @@ class TaskViewScreen extends StatefulWidget {
 }
 
 class _TaskViewScreenState extends State<TaskViewScreen> {
-  final List<Map<String, dynamic>> dummyData = [
-    {
-      'image': 'image_url_1',
-      'title': 'Card 1',
-      'description': 'Description for Card 1',
-      'isFavorite': false,
-    },
-    {
-      'image': 'image_url_2',
-      'title': 'Card 2',
-      'description': 'Description for Card 2',
-      'isFavorite': false,
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     // Initializes the controller
